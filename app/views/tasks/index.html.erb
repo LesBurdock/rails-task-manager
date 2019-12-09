@@ -1,0 +1,26 @@
+<div class= "m-5">
+<p> All Tasks<p>
+<% @tasks.each do |task| %>
+<!-- display unchecked box -->
+
+   <% if task.completed %>
+  <!-- display checked box -->
+  <div class="radio">
+  <input type="checkbox" name="completed" checked>
+  </div>
+  <div class="form-group">
+   <%= link_to task.title, task_path(task)%>
+   <button><%= link_to 'Delete', task_path(task), method: :delete,
+      data: { confirm: "Are you sure?" } %> </button>
+  </div>
+  <% else %>
+  <input type="checkbox" name="completed">
+   <div class="form-group">
+   <%= link_to task.title, task_path(task)%>
+   <button><%= link_to 'Delete', task_path(task), method: :delete,
+      data: { confirm: "Are you sure?" } %> </button>
+  </div>
+  <% end %>
+<% end %>
+</div>
+<%= link_to 'Create a new Task', new_task_path %>
